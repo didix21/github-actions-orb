@@ -13,7 +13,6 @@ parameters:
   github_personal_access_token:
     type: env_var_name
     description: "The environment variable name containing a GitHub 'Personal Access Token' (PAT) with the `repo` scope"
-    default: GITHUB_PERSONAL_ACCESS_TOKEN
   metadata:
     type: string
     description: "Send any payload through this field. For example: `{'version': '0.1.0'}`"
@@ -21,11 +20,15 @@ parameters:
 
 steps:
   - run:
+      name: "Set enviroment variables"
+      command: |
+         echo 'export GH_TOKEN=$(echo $<< parameters.github_personal_access_token >>)' >> "$BASH_ENV"
+         source "$BASH_ENV"
+  - run:
       environment:
         - REPO_NAME: << parameters.repo_name >>
         - EVENT_TYPE: << parameters.event_type >>
         - METADATA: << parameters.metadata >>
-        - GH_TOKEN: << parameters.github_personal_access_token >>
       when: always
       name: Bundle build info into webhook payload
       command: << include(scripts/send-payload.sh) >>
