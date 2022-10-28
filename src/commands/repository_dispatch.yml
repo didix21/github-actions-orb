@@ -1,0 +1,26 @@
+description: >
+  Triggers a repository_dispatch event within GitHub Actions for the repo.
+  event_type field must be provided. For example, `build_finished`.
+  Moreover, a default payload is sent.
+
+parameters:
+  repo_name:
+    type: string
+    description: "The organization and repo name to trigger the event for (ex. `octocat/hello-world`)"
+  event_type:
+    type: string
+    description: "The ['event_type'](https://docs.github.com/en/free-pro-team@latest/rest/reference/repos#create-a-repository-dispatch-event) parameter to send"
+  github_personal_access_token:
+    type: env_var_name
+    description: "The environment variable name containing a GitHub 'Personal Access Token' (PAT) with the `repo` scope"
+    default: GITHUB_PERSONAL_ACCESS_TOKEN
+  metadata:
+    type: string
+    default: "{}"
+    description: "Send any payload through this field. For example: `{'version': '0.1.0'}`"
+
+steps:
+  - run:
+      when: always
+      name: Bundle build info into webhook payload
+      command: <<include(scripts/send-payload.sh)>>
