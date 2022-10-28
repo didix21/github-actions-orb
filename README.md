@@ -75,6 +75,7 @@ These are simply copied from the various CircleCI environment variables.
 | `reponame`       | `CIRCLE_PROJECT_REPONAME`     |
 | `workflow_id`    | `CIRCLE_WORKFLOW_ID`          |
 | `pull_request`   | `CI_PULL_REQUEST`             |
+| `metadata`       | `null`                        |
 
 ##### Example
 
@@ -90,7 +91,7 @@ These are simply copied from the various CircleCI environment variables.
     "vcs_revision": "46f3ff30f669ec61194f6010d4a8adf98a71b29a",
     "reponame": "octokit_test",
     "workflow_id": "c1b6618e-a6ea-4ce7-a907-74763b5bdd31",
+    "metadata": { "field_1": "value" }
   },
-  "metadata": { "field_1": "value" }
 }
 ```
