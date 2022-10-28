@@ -16,11 +16,16 @@ parameters:
     default: GITHUB_PERSONAL_ACCESS_TOKEN
   metadata:
     type: string
-    default: "{}"
     description: "Send any payload through this field. For example: `{'version': '0.1.0'}`"
+    default: null
 
 steps:
   - run:
+      environment:
+        - REPO_NAME: << parameters.repo_name >>
+        - EVENT_TYPE: << parameters.event_type >>
+        - METADATA: << parameters.metadata >>
+        - GH_TOKEN: << parameters.github_personal_access_token >>
       when: always
       name: Bundle build info into webhook payload
-      command: <<include(scripts/send-payload.sh)>>
+      command: << include(scripts/send-payload.sh) >>

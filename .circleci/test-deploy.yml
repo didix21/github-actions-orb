@@ -15,11 +15,20 @@ jobs:
       - image: cimg/base:current
     steps:
       - checkout
-      # Run your orb's commands to validate them.
+      # Implement your tests here
       - github-actions-orb/repository_dispatch:
           repo_name: "didix21/github-actions-orb" # Your GitHub organization name + repo name
           event_type: "build_finished" # Arbitrary string that your GitHub Actions will filter on
-          github_personal_access_token: "GH_TOKEN"
+          metadata: '{"version": "0.1.0"}'
+      - run:
+          name: 'Verify when no token is provied that returns Bad Credentials'
+          command: |
+            grep -q "Bad credentials" /tmp/output.txt
+            rm /tmp/output.txt
+      - github-actions-orb/repository_dispatch:
+          repo_name: "didix21/github-actions-orb" # Your GitHub organization name + repo name
+          event_type: "build_finished" # Arbitrary string that your GitHub Actions will filter on
+          github_personal_access_token: "P_GITHUB_TOKEN"
           metadata: '{"version": "0.1.0"}'
 workflows:
   test-deploy:

@@ -1,0 +1,11 @@
+name: "Test CircleCI Orb"
+
+on:
+  repository_dispatch:
+    types: [build_finished]
+
+jobs:
+  build_finished:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "hello world"
