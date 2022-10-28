@@ -1,0 +1,6 @@
+{
+  "message": "Bd credentials",
+  "documentation_url": "https://docs.github.com/rest"
+}
+
+

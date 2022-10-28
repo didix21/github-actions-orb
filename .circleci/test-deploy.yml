@@ -16,25 +16,21 @@ jobs:
     steps:
       - checkout
       # Implement your tests here
-      - github-actions-orb/repository_dispatch:
-          repo_name: "didix21/github-actions-orb" # Your GitHub organization name + repo name
-          event_type: "build_finished" # Arbitrary string that your GitHub Actions will filter on
-          metadata: '{"version": "0.1.0"}'
       - run:
-          name: 'Verify when no token is provied that returns Bad Credentials'
-          command: |
-            grep -q "Bad credentials" /tmp/output.txt
-            rm /tmp/output.txt
+          name: 'Check token'
+          command: echo $P_GITHUB_TOKEN
       - github-actions-orb/repository_dispatch:
           repo_name: "didix21/github-actions-orb" # Your GitHub organization name + repo name
           event_type: "build_finished" # Arbitrary string that your GitHub Actions will filter on
-          github_personal_access_token: "P_GITHUB_TOKEN"
+          github_personal_access_token: P_GITHUB_TOKEN
           metadata: '{"version": "0.1.0"}'
+
 workflows:
   test-deploy:
     jobs:
       # Make sure to include "filters: *filters" in every test job you want to run as part of your deployment.
       - command-tests:
+          context: orb-publishing
           filters: *filters
       - orb-tools/pack:
           filters: *filters

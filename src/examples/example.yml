@@ -14,7 +14,7 @@ usage:
         - github-actions/repository_dispatch:
             repo_name: "<user>/<your-repo-name>" # Your GitHub organization name + repo name
             event_type: "build_finished" # Arbitrary string that your GitHub Actions will filter on
-            github_personal_access_token: "GH_TOKEN"
+            github_personal_access_token: "GITHUB_PERSONAL_TOKEN"
             metadata: '{"version": "0.1.0"}'
 
   # Invoke jobs via workflows
