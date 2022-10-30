@@ -22,7 +22,7 @@ steps:
   - run:
       name: "Set enviroment variables"
       command: |
-         echo 'export GH_TOKEN=$(echo $<< parameters.github_personal_access_token >>)' >> "$BASH_ENV"
+         echo 'export PRIVATE_GH_TOKEN=$(echo $<< parameters.github_personal_access_token >>)' >> "$BASH_ENV"
          source "$BASH_ENV"
   - run:
       environment:
