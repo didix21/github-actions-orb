@@ -13,7 +13,5 @@ jobs:
           echo "Build url: ${{ github.event.client_payload.build_url }}"
           echo "Build commit: ${{ github.event.client_payload.vcs_revision }}"
           echo "Build metadata: ${{ github.event.client_payload.metadata }}"
+          echo "Version provided by metadata: ${{ github.event.client_payload.metadata.version }}""
 
-          # curl "${{ github.event.client_payload.build_url }}/artifacts" \
-          # --header 'Circle-Token: ${{ secrets.circle_token }}' \
-          # --header 'Content-Type: application/json'
