@@ -13,7 +13,7 @@ OUTPUT=$(echo '{}' | jq '{
             "pull_request": env.CI_PULL_REQUEST,
             "metadata": env.METADATA,
           }
-        }' | curl -X POST -H "Content-Type:application/json" -H "Accept:application/vnd.github.v3+json" -H "Authorization: token $GH_TOKEN" -d @- "https://api.github.com/repos/${REPO_NAME}/dispatches")
+        }' | curl -X POST -H "Content-Type:application/json" -H "Accept:application/vnd.github.v3+json" -H "Authorization: token $PRIVATE_GH_TOKEN" -d @- "https://api.github.com/repos/${REPO_NAME}/dispatches")
 
 echo "$OUTPUT"
 
