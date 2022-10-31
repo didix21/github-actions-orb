@@ -18,7 +18,7 @@ Include the orb in the root of your CircleCI config:
 
 ```yaml
 orbs:
-  github-actions: didix21/github-actions-orb@0.1.0 # Make sure to update this to the latest version: https://circleci.com/developer/orbs/orb/movermeyer/github-actions
+  github-actions: didix21/github-actions-orb@0.1.4 # Make sure to update this to the latest version: https://circleci.com/developer/orbs/orb/movermeyer/github-actions
 ```
 
 Then call commands in the `steps` section of your CircleCI config:

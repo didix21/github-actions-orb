@@ -16,7 +16,7 @@ parameters:
   metadata:
     type: string
     description: "Send any payload through this field. For example: `{'version': '0.1.0'}`"
-    default: null
+    default: "null"
 
 steps:
   - run:
